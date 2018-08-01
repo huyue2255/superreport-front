@@ -1,0 +1,97 @@
+
+<div class="container">
+  <div class="row centered-form">
+    <div class="col-xs-6 col-sm-6 col-md-6">
+      <div class="card card-default">
+        <div class="card-header text-center" style="padding-top:25px">
+          <h3 class="card-title">Report generator </h3>
+        </div>
+
+        <div class="card-body">
+
+
+          <form novalidate
+                [formGroup]="myform" role="form">
+            <!--(ngSubmit)="onSubmit()">-->
+
+            <!--<fieldset formGroupName="name">-->
+
+            <div class="row">
+              <div class="col-xs-6 col-sm-6 col-md-6">
+
+
+                <div class="form-group"
+                     [ngClass]="{
+        'has-danger': testServerAddress.invalid && (testServerAddress.dirty || testServerAddress.touched),
+        'has-success': testServerAddress.valid && (testServerAddress.dirty || testServerAddress.touched)
+      }">
+                  <label>IP Name</label>
+                  <select class="form-control"
+                          formControlName="testServerAddress">
+                    <!--<option value="">Please select IP</option>-->
+                    <option *ngFor="let ip of ips"
+                            [value]="ip">{{ip}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group"
+                     [ngClass]="{
+        'has-danger': project.invalid && (project.dirty || project.touched),
+        'has-success': project.valid && (project.dirty || project.touched)
+      }">
+                  <label>Project Name</label>
+                  <select class="form-control"
+                          formControlName="project">
+                    <!--<option value="">Please select a Project Name</option>-->
+                    <option *ngFor="let project of projects"
+                            [value]="project">{{project}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-group"
+                 [ngClass]="{
+        'has-danger': stage.invalid && (stage.dirty || stage.touched),
+        'has-success': stage.valid && (stage.dirty || stage.touched)
+      }">
+              <label>Stage Number</label>
+              <select class="form-control"
+                      formControlName="stage">
+                <!--<option value="">Please select a Stage Number</option>-->
+                <option *ngFor="let stage of stages"
+                        [value]="stage">{{stage}}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group"
+                 [ngClass]="{
+        'has-danger': serial.invalid && (serial.dirty || serial.touched),
+        'has-success': serial.valid && (serial.dirty || serial.touched)
+      }">
+              <label>Serial Name</label>
+              <input type="text"
+                     class="form-control input-sm"
+                     formControlName="serial"
+                     required>
+              <div class="form-control-feedback"
+                   *ngIf="serial.errors && (serial.dirty || serial.touched)">
+                <p *ngIf="serial.errors.required">Serial Name is required</p>
+              </div>
+            </div>
+            <!--</fieldset>-->
+            <button class="btn btn-info btn-block" (click)="doPOST()">Submit</button>
+            <!--<pre>{{myform.value | json}}</pre>-->
+            <!--<pre>{{ myform.controls.serial.value | json}}</pre>-->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
